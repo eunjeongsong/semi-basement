@@ -24,8 +24,7 @@ const Player = ({
   const artworkUrl = song[2]
   const title = song[1]
   const duration = song[3]
-  const { currentTime, isPlaying } = player
-
+  const { currentTime, isPlaying, muted } = player
   return (
     <div className={cx(`${moduleName}`)}>
       <div
@@ -100,7 +99,11 @@ const Player = ({
                 paddingTop: "11px"
               }}
             >
-              <i className={cx(`${moduleName}__button__mute`)} />
+              <i
+                className={cx(
+                  `${moduleName}__button__mute` + (muted ? "_isMuted" : "")
+                )}
+              />
             </div>
             <div className="player__song">
               <div className={cx(`${moduleName}__song__main`)}>

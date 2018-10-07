@@ -12,11 +12,11 @@ class HistoryTab extends Component {
     super(props)
     console.log("constructor props ", props)
     this.state = {
-      songId: [props.historySong],
+      songId: [],
       songData: []
     }
     console.log(this.state.songId)
-    this.getHistorySong()
+    //this.getHistorySong()
   }
   //그려지고 난 다음에 localStorage 랑 동기화
   componentDidMount() {

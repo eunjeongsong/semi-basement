@@ -45,6 +45,7 @@
     div {
       display: table;
       margin-bottom: 26px;
+      border: 5px solid white;
     }
     div:hover {
       border-bottom: 5px solid #45f7aa;
@@ -54,5 +55,6 @@
   }
   &-bottom {
     padding-left: 78px;
+    position: relative;
   }
 }

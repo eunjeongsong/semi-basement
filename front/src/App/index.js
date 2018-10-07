@@ -16,7 +16,10 @@ const moduleName = "App"
 class App extends Component {
   render() {
     return (
-      <div className={cx(`${moduleName}`)}>
+      <div
+        className={cx(`${moduleName}`)}
+        style={{ backgroundColor: "#000000" }}
+      >
         <Header />
         <div className={cx(`${moduleName}-body`)}>
           <Switch>
