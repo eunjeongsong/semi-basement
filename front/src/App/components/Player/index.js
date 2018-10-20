@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import classnames from 'classnames/bind'
+import PropTypes from 'prop-types'
 
 import {
   onLoadedMetadata,
@@ -15,31 +16,19 @@ import {
   playPrevSong
 } from 'src/redux/player/actions'
 import { toggleHistory } from 'src/redux/meta/actions'
+import getImageUrl from 'src/utils/ImageUtils'
+import { formatSeconds } from 'src/utils/NumberUtils'
 
-import css from './Player.scss'
-import audio from './audio'
-
-import getImageUrl from '../../utils/ImageUtils'
-import IMAGE_SIZES from '../constants/ImageConstants'
-import Slider from './Slider'
-import { formatSeconds } from '../../utils/NumberUtils'
-import HistoryTab from './HistoryTab/HistoryTab'
+import css from './index.scss'
+import audio from '../audio'
+import IMAGE_SIZES from '../../constants/ImageConstants'
+import Slider from '../Slider'
+import HistoryTab from '../HistoryTab/HistoryTab'
 
 const cx = classnames.bind(css)
 const moduleName = 'Player'
-// const Player = ({
-//   changeCurrentTime,
-//   changeVolume,
-//   togglePlay,
-//   toggleMuted,
-//   toggleHistory,
-//   playNexSong,
-//   playPrevSong,
-//   song
-// }) => {
 class Player extends Component {
   render() {
-    // if(this.props.song === 'undefined') return <div/>
     if (!this.props.song) return <div />
     const artworkUrl = this.props.song[2]
     const title = this.props.song[1]
@@ -63,7 +52,7 @@ class Player extends Component {
                   className={cx(`${moduleName}__button`)}
                   role="button"
                   tabIndex="0"
-                  onClick={playPrevSong}
+                  onClick={this.props.playPrevSong}
                 >
                   <i className={cx(`${moduleName}__button__prev`)} />
                 </div>
@@ -86,7 +75,7 @@ class Player extends Component {
                   role="button"
                   tabIndex="0"
                   onClick={() => {
-                    playNexSong(this.props.song[0])
+                    this.props.playNexSong(this.props.song[0])
                   }}
                 >
                   <i className={cx(`${moduleName}__button__forward`)} />
@@ -169,7 +158,7 @@ class Player extends Component {
                 <div role="button" tabIndex="0">
                   <span
                     className={cx(`${moduleName}__toggle__history`)}
-                    onClick={toggleHistory}
+                    onClick={this.props.toggleHistory}
                   />
                 </div>
                 <div
@@ -191,6 +180,13 @@ class Player extends Component {
       </div>
     )
   }
+}
+
+Player.propTypes = {
+  changeCurrentTime: PropTypes.func.isRequired,
+  changeVolume: PropTypes.func.isRequired,
+  toggleMuted: PropTypes.func.isRequired,
+  togglePlay: PropTypes.func.isRequired
 }
 
 export default connect(
