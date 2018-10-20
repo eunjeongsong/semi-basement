@@ -1,19 +1,19 @@
-import React, { Component } from "react"
-import { hot } from "react-hot-loader"
-import { Switch, Route, withRouter } from "react-router-dom"
-import classnames from "classnames/bind"
+import React, { Component } from 'react'
+import { hot } from 'react-hot-loader'
+import { Switch, Route, withRouter } from 'react-router-dom'
+import classnames from 'classnames/bind'
 
-import PlayerContainer from "src/App/container/PlayerContainer"
+import Player from 'src/App/components/Player'
 import MyPlayer from 'src/App/components/MyPlayer'
 
-import routes from "./routes"
-import css from "./index.scss"
-import Header from "./components/Header"
+import routes from './routes'
+import css from './index.scss'
+import Header from './components/Header'
 
-import NavBar from "../App/components/Header/navBar"
+import NavBar from '../App/components/Header/navBar'
 
 const cx = classnames.bind(css)
-const moduleName = "App"
+const moduleName = 'App'
 
 class App extends Component {
   render() {
@@ -24,10 +24,10 @@ class App extends Component {
         <div className={cx(`${moduleName}-body`)}>
           <Switch>
             {routes.map(({ ...routeProps }) => (
-              <Route {...routeProps} key={routeProps.path || ""} />
+              <Route {...routeProps} key={routeProps.path || ''} />
             ))}
           </Switch>
-          <PlayerContainer />
+          <Player />
         </div>
         <NavBar />
       </div>

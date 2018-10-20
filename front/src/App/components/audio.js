@@ -2,8 +2,8 @@ import React, { Component } from "react"
 import { SONG_STREAM_URL } from "../constants/ApiConstants"
 const audio = InnerComponent => {
   class AudioComponent extends Component {
-    constructor() {
-      super()
+    constructor(props) {
+      super(props)
       this.audioElement = null
       this.onEnded = this.onEnded.bind(this)
       this.onLoadStart = this.onLoadStart.bind(this)
@@ -101,6 +101,7 @@ const audio = InnerComponent => {
     render() {
       const { song } = this.props
       const songUrl = "https:" + SONG_STREAM_URL.replace(":id", song[0])
+
       return (
         <div>
           <audio

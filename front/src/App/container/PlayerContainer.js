@@ -1,5 +1,5 @@
-import React from "react"
-import { connect } from "react-redux"
+import React from 'react'
+import { connect } from 'react-redux'
 
 import {
   onLoadedMetadata,
@@ -12,19 +12,19 @@ import {
   // addPlaylist,
   playNexSong,
   playPrevSong
-} from "../../redux/player/actions"
-//title, artwork, songId, singerName
-import Player from "../components/Player"
-import { toggleHistory } from "../../redux/meta/actions"
+} from 'src/redux/player/actions'
+import { toggleHistory } from 'src/redux/meta/actions'
+
+import Player from '../components/Player'
 
 const defaultProps = {
   song: null
 }
 
 const PlayerContainer = props => {
-  const { song } = props
-  return song ? <Player {...props} /> : null
-  //return <Player {...props} />
+  // const { song } = props
+  // return song ? <Player {...props} /> : null
+  return <Player {...props} />
 }
 PlayerContainer.defaultProps = defaultProps
 
@@ -33,7 +33,7 @@ const mapStateToProps = ({ player, meta, music }) => {
     //song : songUrl
     meta,
     player,
-    song: music.song
+    // song: music.song
   }
 }
 export default connect(
