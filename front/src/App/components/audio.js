@@ -1,22 +1,10 @@
-import React, { Component } from "react"
-import { SONG_STREAM_URL } from "../constants/ApiConstants"
+import React, { Component } from 'react'
+import { SONG_STREAM_URL } from '../constants/ApiConstants'
 const audio = InnerComponent => {
   class AudioComponent extends Component {
     constructor(props) {
       super(props)
       this.audioElement = null
-      this.onEnded = this.onEnded.bind(this)
-      this.onLoadStart = this.onLoadStart.bind(this)
-      this.onLoadedMetadata = this.onLoadedMetadata.bind(this)
-      this.onPause = this.onPause.bind(this)
-      this.onPlay = this.onPlay.bind(this)
-      this.onTimeUpdate = this.onTimeUpdate.bind(this)
-      this.onVolumeChange = this.onVolumeChange.bind(this)
-
-      this.changeCurrentTime = this.changeCurrentTime.bind(this)
-      this.changeVolume = this.changeVolume.bind(this)
-      this.toggleMuted = this.toggleMuted.bind(this)
-      this.togglePlay = this.togglePlay.bind(this)
     }
 
     componentDidMount() {
@@ -34,39 +22,39 @@ const audio = InnerComponent => {
         audioElement.play()
       }
     }
-    onEnded() {
+    onEnded = () => {
       console.log(this.props)
       const { props } = this
       const { playNexSong } = props
       playNexSong()
     }
-    onLoadedMetadata() {
+    onLoadedMetadata = () => {
       const { audioElement, props } = this
       const { onLoadedMetadata } = props
       onLoadedMetadata(Math.floor(audioElement.duration))
     }
-    onLoadStart() {
+    onLoadStart = () => {
       const { onLoadStart } = this.props
       onLoadStart()
     }
 
-    onPlay() {
+    onPlay = () => {
       const { onPlay } = this.props
       onPlay()
     }
 
-    onPause() {
+    onPause = () => {
       const { onPause } = this.props
       onPause()
     }
 
-    onTimeUpdate() {
+    onTimeUpdate = () => {
       const { audioElement, props } = this
       const { onTimeUpdate } = props
       onTimeUpdate(Math.floor(audioElement.currentTime))
     }
 
-    onVolumeChange() {
+    onVolumeChange = () => {
       const { audioElement, props } = this
 
       const { muted, volume } = audioElement
@@ -74,23 +62,23 @@ const audio = InnerComponent => {
       onVolumeChange(muted, volume)
     }
 
-    changeCurrentTime(currentTime) {
+    changeCurrentTime = currentTime => {
       this.audioElement.currentTime = currentTime
     }
 
-    changeVolume(volume) {
+    changeVolume = volume => {
       const { audioElement } = this
       audioElement.muted = false
       audioElement.volume = volume
     }
 
-    toggleMuted() {
+    toggleMuted = () => {
       const { audioElement } = this
       const { muted } = audioElement
       audioElement.muted = !muted
     }
 
-    togglePlay() {
+    togglePlay = () => {
       const { audioElement } = this
       if (this.props.player.isPlaying) {
         audioElement.pause()
@@ -100,7 +88,7 @@ const audio = InnerComponent => {
     }
     render() {
       const { song } = this.props
-      const songUrl = "https:" + SONG_STREAM_URL.replace(":id", song[0])
+      const songUrl = 'https:' + SONG_STREAM_URL.replace(':id', song[0])
 
       return (
         <div>
