@@ -23,7 +23,7 @@ class ChartTab extends Component {
     this.props.loadChartSongsInfo(SongChartList)
   }
   onClickPlay = ({ songId, title, artworkUrl, duration }) => {
-    this.props.selectSong([songId, title, artworkUrl, duration])
+    this.props.selectSong({songId, title, artworkUrl, duration})
     this.props.addHistory(songId)
   }
 

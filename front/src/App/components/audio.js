@@ -8,15 +8,14 @@ const audio = InnerComponent => {
     }
 
     componentDidMount() {
-      //console.log("audio", this.props);
+      // console.log("audio", this.props);
       const { audioElement } = this
       audioElement.play()
     }
 
     componentDidUpdate(prevProps) {
-      const { audioElement, props } = this
-      const { song } = props
-      const audioUrl = song[0]
+      const { audioElement } = this
+      const audioUrl = this.props.song[0]
       const prevSong = prevProps.song[0]
       if (prevSong !== audioUrl) {
         audioElement.play()
@@ -87,8 +86,8 @@ const audio = InnerComponent => {
       }
     }
     render() {
-      const { song } = this.props
-      const songUrl = 'https:' + SONG_STREAM_URL.replace(':id', song[0])
+      if (!this.props.song) return <div />
+      const songUrl = 'https:' + SONG_STREAM_URL.replace(':id', this.props.song)
 
       return (
         <div>

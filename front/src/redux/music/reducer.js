@@ -11,7 +11,7 @@ import {
 
 const music = (
   state = {
-    song: '',
+    song: { songId: '', title: '', artworkUrl: '', duration: '' },
     loading: false,
     infoLoading: false,
     musicInfo: null,
@@ -36,7 +36,7 @@ const music = (
     case types.SELECT_SONG:
       return {
         ...state,
-        song: action.song
+        song: { ...action.song }
       }
     case types.HISTORY_SONG:
       return {

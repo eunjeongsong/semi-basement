@@ -30,12 +30,7 @@ const moduleName = 'Player'
 class Player extends Component {
   render() {
     if (!this.props.song) return <div />
-    const artworkUrl = this.props.song[2]
-    const title = this.props.song[1]
-    const duration = this.props.song[3]
-    const { currentTime, isPlaying, muted } = this.props.player
-    //변수명때문에 굳이 .. 위에 안씀.
-    const volume = muted ? 0 : this.props.player.volume
+    const volume = this.props.player.muted ? 0 : this.props.player.volume
     return (
       <div className={cx(`${moduleName}`)}>
         <div
@@ -65,7 +60,8 @@ class Player extends Component {
                 >
                   <i
                     className={cx(
-                      `${moduleName}__button__` + (isPlaying ? 'play' : 'pause')
+                      `${moduleName}__button__` +
+                        (this.props.player.isPlaying ? 'play' : 'pause')
                     )}
                   />
                 </div>
@@ -75,7 +71,7 @@ class Player extends Component {
                   role="button"
                   tabIndex="0"
                   onClick={() => {
-                    this.props.playNexSong(this.props.song[0])
+                    this.props.playNexSong(this.props.song.songId)
                   }}
                 >
                   <i className={cx(`${moduleName}__button__forward`)} />
@@ -86,18 +82,20 @@ class Player extends Component {
               <div
                 style={{ color: '#45f7aa', width: '50px', textAlign: 'center' }}
               >
-                {formatSeconds(currentTime)}
+                {formatSeconds(this.props.player.currentTime)}
               </div>
             </div>
             <div className={cx(`${moduleName}__section--seek`)}>
               <Slider
-                max={duration}
+                max={this.props.song.duration}
                 onChange={this.props.changeCurrentTime}
-                value={currentTime}
+                value={this.props.player.currentTime}
               />
             </div>
             <div className={cx(`${moduleName}__section--time`)}>
-              <div className="player__time">{formatSeconds(duration)}</div>
+              <div className="player__time">
+                {formatSeconds(this.props.song.duration)}
+              </div>
             </div>
 
             <div className={cx(`${moduleName}__section`)}>
@@ -127,7 +125,7 @@ class Player extends Component {
                     className={cx(`${moduleName}__song__artwork`)}
                     style={{
                       backgroundImage: `url(${getImageUrl(
-                        artworkUrl,
+                        this.props.song.artworkUrl,
                         IMAGE_SIZES.SMALL
                       )})`
                     }}
@@ -135,7 +133,7 @@ class Player extends Component {
                   {/*TODO : Change Link*/}
                   <div className={cx(`${moduleName}__song_infoWrapper`)}>
                     <div className={cx(`${moduleName}__song__title`)}>
-                      {title}
+                      {this.props.song.title}
                     </div>
                     <div className={cx(`${moduleName}__song__username`)}>
                       Creator

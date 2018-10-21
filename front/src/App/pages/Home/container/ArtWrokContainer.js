@@ -27,7 +27,7 @@ const inactivePalyList = {
 }
 class ArtWorkPlayContainer extends PureComponent {
   onClickPlay = ({ songId, title, artworkUrl, duration }) => {
-    this.props.selectSong([songId, title, artworkUrl, duration])
+    this.props.selectSong({songId, title, artworkUrl, duration})
     this.props.addHistory(songId)
   }
 
