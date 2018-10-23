@@ -1,33 +1,33 @@
-import React, { PureComponent } from "react"
-import { connect } from "react-redux"
-import { selectSong, addHistory, loadSongDetail } from "src/redux/music/actions"
-import { changePlayList } from "src/redux/playlist/actions"
-import Loading from "src/App/components/Loading"
-import ArtworkPlay from "../components/ArtworkPlay"
-import classnames from "classnames/bind"
-import css from "./ArtWorkContainer.scss"
+import React, { PureComponent } from 'react'
+import { connect } from 'react-redux'
+import { selectSong, addHistory, loadSongDetail } from 'src/redux/music/actions'
+import { changePlayList } from 'src/redux/playlist/actions'
+import Loading from 'src/App/components/Loading'
+import ArtworkPlay from '../components/ArtworkPlay'
+import classnames from 'classnames/bind'
+import css from './ArtWorkContainer.scss'
 
-import selectIcon from "src/assets/icons/icon2.png"
+import selectIcon from 'src/assets/icons/icon2.png'
 
 const cx = classnames.bind(css)
-const moduleName = "ArtWorkPlayContainer"
+const moduleName = 'ArtWorkPlayContainer'
 
 const activePalyList = {
-  cursor: "pointer",
+  cursor: 'pointer',
   background: `url(${selectIcon}) no-repeat -49px -152px`,
-  width: "35px",
-  height: "35px"
+  width: '35px',
+  height: '35px'
 }
 
 const inactivePalyList = {
-  cursor: "pointer",
+  cursor: 'pointer',
   background: `url(${selectIcon}) no-repeat -111px -152px`,
-  width: "35px",
-  height: "35px"
+  width: '35px',
+  height: '35px'
 }
 class ArtWorkPlayContainer extends PureComponent {
   onClickPlay = ({ songId, title, artworkUrl, duration }) => {
-    this.props.selectSong({songId, title, artworkUrl, duration})
+    this.props.selectSong({ songId, title, artworkUrl, duration })
     this.props.addHistory(songId)
   }
 
@@ -36,10 +36,7 @@ class ArtWorkPlayContainer extends PureComponent {
   }
   onClickChangePlayList = playlist => {
     if (!this.props.currentList || this.props.currentList !== playlist) {
-      const songId = this.props.musicInfos.map(info => {
-        if (!songId) return info.id
-        else return songId.concat(info.id)
-      })
+      const songId = this.props.musicInfos.map(info => info.id)
       this.props.changePlayList(songId, playlist)
     }
   }

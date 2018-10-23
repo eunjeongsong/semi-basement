@@ -30,6 +30,7 @@ const moduleName = 'Player'
 class Player extends Component {
   render() {
     if (!this.props.song) return <div />
+    const { playNexSong, song } = this.props
     const volume = this.props.player.muted ? 0 : this.props.player.volume
     return (
       <div className={cx(`${moduleName}`)}>
@@ -56,7 +57,7 @@ class Player extends Component {
                   role="button"
                   onClick={this.props.togglePlay}
                   tabIndex="0"
-                  style={{ color: '#ffffff' }}
+                  style={{ color: '#ffffff', background: 'red' }}
                 >
                   <i
                     className={cx(
@@ -71,7 +72,8 @@ class Player extends Component {
                   role="button"
                   tabIndex="0"
                   onClick={() => {
-                    this.props.playNexSong(this.props.song.songId)
+                    // this.props.playNexSong(this.props.song.songId)
+                    playNexSong(song.songId)
                   }}
                 >
                   <i className={cx(`${moduleName}__button__forward`)} />
