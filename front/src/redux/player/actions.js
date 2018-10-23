@@ -70,26 +70,26 @@ export const playNexSong = targetId => (dispatch, getState) => {
 
 export const playPrevSong = targetId => (dispatch, getState) => {
   const state = getState()
-  const currentSongInfoArray = state.music.song
+  const currentSongInfo = state.music.song
   const targetPlayList = state.playList.musicList
   dispatch({ type: types.PLAY_PREV_SONG })
 
   if (targetPlayList) {
     let nextId
-    const currentSongIndex = targetPlayList.indexOf(currentSongInfoArray[0])
-
-    if (currentSongIndex === -1) nextId = targetPlayList[0]
-    else nextId = targetPlayList[(currentSongIndex - 1) % targetPlayList.length]
-
+    const currentSongIndex = targetPlayList.indexOf(currentSongInfo.songId)
+    // TODO: currentSongIndex가 0일때, 플레이리스트의 첫 곡이므로, 첫곡이 재생중인경우에 prev버튼을 누르면 다시 처음부터 재생되게 해야한다.
+    if (currentSongIndex === -1 || currentSongIndex === 0)
+      nextId = targetPlayList[0]
+    else nextId = targetPlayList[currentSongIndex - 1]
     return axios
       .get(SONG_URL.replace(':id', nextId))
       .then(response => {
-        const songInfo = [
-          response.data.id,
-          response.data.title,
-          response.data.artwork_url,
-          response.data.duration / 1000
-        ]
+        const songInfo = {
+          songId: response.data.id,
+          title: response.data.title,
+          artworkUrl: response.data.artwork_url,
+          duration: response.data.duration / 1000
+        }
         console.log('soninfo', songInfo)
         dispatch({
           type: musicActions.SELECT_SONG,
