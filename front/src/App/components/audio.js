@@ -15,9 +15,7 @@ const audio = InnerComponent => {
 
     componentDidUpdate(prevProps) {
       const { audioElement } = this
-      const audioUrl = this.props.song[0]
-      const prevSong = prevProps.song[0]
-      if (prevSong !== audioUrl) {
+      if (prevProps.song.artworkUrl !== this.props.song.artworkUrl) {
         audioElement.play()
       }
     }
@@ -87,7 +85,7 @@ const audio = InnerComponent => {
     }
     render() {
       if (!this.props.song) return <div />
-      const songUrl = 'https:' + SONG_STREAM_URL.replace(':id', this.props.song)
+      const songUrl = 'https:' + SONG_STREAM_URL.replace(':id', this.props.song.songId)
 
       return (
         <div>
