@@ -1,5 +1,5 @@
-import React from "react"
-import { connect } from "react-redux"
+import React from 'react'
+import { connect } from 'react-redux'
 
 import {
   onLoadedMetadata,
@@ -12,21 +12,21 @@ import {
   // addPlaylist,
   playNexSong,
   playPrevSong
-} from "../../redux/player/actions"
+} from '../../redux/player/actions'
 //title, artwork, songId, singerName
-import Player from "../components/Player"
-import { toggleHistory } from "../../redux/meta/actions"
+import PlayerTwo from '../components/PlayerTwo'
+import { toggleHistory } from '../../redux/meta/actions'
 
 const defaultProps = {
   song: null
 }
 
-const PlayerContainer = props => {
-  const { song, meta } = props
-  return song && !meta.showMyplayer ? <Player {...props} /> : null
+const PlayerContainerTwo = props => {
+  const { song, meta } = props // song이 있고, 다른 분기점 하나 더 있어야 한다.
+  return song && meta.showMyplayer ? <PlayerTwo {...props} /> : null
   //return <Player {...props} />
 }
-PlayerContainer.defaultProps = defaultProps
+PlayerContainerTwo.defaultProps = defaultProps
 
 const mapStateToProps = ({ player, meta, music }) => {
   return {
@@ -51,4 +51,4 @@ export default connect(
     playNexSong,
     playPrevSong
   }
-)(PlayerContainer)
+)(PlayerContainerTwo)

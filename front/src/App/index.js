@@ -4,6 +4,7 @@ import { Switch, Route, withRouter } from "react-router-dom"
 import classnames from "classnames/bind"
 
 import PlayerContainer from "src/App/container/PlayerContainer"
+import PlayerContainerTwo from 'src/App/container/PlayerContainerTwo'
 import MyPlayer from "src/App/components/MyPlayer"
 
 import routes from "./routes"
@@ -27,6 +28,7 @@ class App extends Component {
               <Route {...routeProps} key={routeProps.path || ""} />
             ))}
           </Switch>
+          <PlayerContainerTwo />
           <PlayerContainer />
         </div>
         <NavBar />
