@@ -3,12 +3,13 @@ import { connect } from 'react-redux'
 import classnames from 'classnames/bind'
 
 import { toggleMyplayer } from 'src/redux/meta/actions.js'
+import PlayerController from 'src/App/components/Player/PlayerController'
+import myaudio from 'src/App/components/audio'
 
 import css from './index.scss'
 
 const cx = classnames.bind(css)
 const moduleName = 'MyPlayer'
-
 class MyPlayer extends Component {
   constructor(props) {
     super(props)
@@ -21,6 +22,7 @@ class MyPlayer extends Component {
   }
 
   render() {
+    if (!this.props.song) return <div />
     return (
       <div
         className={cx(`${moduleName}`)}
@@ -37,6 +39,7 @@ class MyPlayer extends Component {
             </div>
             <div className={cx(`${moduleName}-top-musicCard-player`)}>
               플레이어
+              <PlayerController togglePlay={this.props.togglePlay} />
             </div>
           </div>
           <div className={cx(`${moduleName}-top-musicController`)}>
@@ -63,4 +66,4 @@ export default connect(
   {
     toggleMyplayer
   }
-)(MyPlayer)
+)(myaudio(MyPlayer))

@@ -1,0 +1,52 @@
+.PlayerController {
+  &__buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 100%;
+
+    span {
+      display: block;
+    }
+  }
+
+  &__button {
+    position: relative;
+    padding: 4px;
+    outline: 0;
+    margin-right: 3em;
+    &:hover {
+      cursor: pointer;
+    }
+    & + .player__button {
+      margin-left: 30px;
+    }
+
+    i {
+      position: relative;
+      z-index: 1;
+      display: inline-block;
+    }
+  }
+
+  &__button__prev {
+    background: url('src/assets/icons/icon2.png') no-repeat -111px -38px;
+    width: 13px;
+    height: 13px;
+  }
+  &__button__pause {
+    width: 12px;
+    height: 14px;
+    background: url('src/assets/icons/icon2.png') no-repeat -117px -92px;
+  }
+  &__button__play {
+    width: 16px;
+    height: 19px;
+    background: url('src/assets/icons/icon2.png') no-repeat -56px -89px;
+  }
+  &__button__forward {
+    background: url("src/assets/icons/icon2.png") no-repeat -169px -38px;
+    width: 13px;
+    height: 13px;
+  }
+}

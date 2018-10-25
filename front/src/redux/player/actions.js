@@ -37,7 +37,7 @@ export const playSong = (playlist, playingIndex) => ({
   playlist,
   playingIndex
 })
-export const playNexSong = targetId => (dispatch, getState) => {
+export const playNexSong = () => (dispatch, getState) => {
   const state = getState()
   const currentSongInfo = state.music.song
   const targetPlayList = state.playList.musicList
@@ -68,7 +68,7 @@ export const playNexSong = targetId => (dispatch, getState) => {
   }
 }
 
-export const playPrevSong = targetId => (dispatch, getState) => {
+export const playPrevSong = () => (dispatch, getState) => {
   const state = getState()
   const currentSongInfo = state.music.song
   const targetPlayList = state.playList.musicList

@@ -8,15 +8,13 @@ const audio = InnerComponent => {
     }
 
     componentDidMount() {
-      console.log("audio", this.props);
+      // console.log("audio", this.props);
       const { audioElement } = this
       audioElement.play()
     }
 
     componentDidUpdate(prevProps) {
       const { audioElement } = this
-      console.log(prevProps)
-      console.log('this.props: ', this.props)
       if (prevProps.song.artworkUrl !== this.props.song.artworkUrl) {
         audioElement.play()
       }
@@ -93,7 +91,7 @@ const audio = InnerComponent => {
       return (
         <div>
           <audio
-            id="audio"
+            id="myaudio"
             onEnded={this.onEnded}
             onLoadedMetadata={this.onLoadedMetadata}
             onLoadStart={this.onLoadStart}
@@ -101,8 +99,8 @@ const audio = InnerComponent => {
             onPlay={this.onPlay}
             onTimeUpdate={this.onTimeUpdate}
             onVolumeChange={this.onVolumeChange}
-            ref={node => {
-              this.audioElement = node
+            ref={mynode => {
+              this.audioElement = mynode
             }}
             src={songUrl}
           />
