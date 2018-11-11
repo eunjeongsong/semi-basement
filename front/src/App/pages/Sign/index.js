@@ -11,7 +11,6 @@ class SignUp extends PureComponent {
   
   responseGoogle = response => {
     console.log(response)
-    debugger;
   }
 
   render() {
@@ -38,11 +37,11 @@ class SignUp extends PureComponent {
               </div>
             </div>
             <GoogleLogin
-                clientId={""}
-                buttonText="Login"
-                onSuccess={this.responseGoogle}
-                onFailure={this.responseGoogle}
-              />
+              clientId={process.env.SEBA_GOOGLE_CLIENT_ID}
+              buttonText="Login"
+              onSuccess={this.responseGoogle}
+              onFailure={this.responseGoogle}
+            />
           </div>
         </div>
       </div>
