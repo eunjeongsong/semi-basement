@@ -1,12 +1,19 @@
-import React, { PureComponent } from "react"
-import logo from "src/assets/logos/logo.png"
-import classnames from "classnames/bind"
-import css from "./index.scss"
+import React, { PureComponent } from 'react'
+import logo from 'src/assets/logos/logo.png'
+import { GoogleLogin } from 'react-google-login'
+import classnames from 'classnames/bind'
+import css from './index.scss'
 
 const cx = classnames.bind(css)
-const moduleName = "SignUp"
+const moduleName = 'SignUp'
 
 class SignUp extends PureComponent {
+  
+  responseGoogle = response => {
+    console.log(response)
+    debugger;
+  }
+
   render() {
     return (
       <div className={cx(`${moduleName}`)}>
@@ -30,6 +37,12 @@ class SignUp extends PureComponent {
                 Continue With Google
               </div>
             </div>
+            <GoogleLogin
+                clientId={""}
+                buttonText="Login"
+                onSuccess={this.responseGoogle}
+                onFailure={this.responseGoogle}
+              />
           </div>
         </div>
       </div>
