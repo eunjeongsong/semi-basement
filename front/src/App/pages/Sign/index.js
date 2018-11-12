@@ -9,12 +9,32 @@ const cx = classnames.bind(css)
 const moduleName = 'SignUp'
 
 class SignUp extends PureComponent {
-
   responseGoogle = response => {
-    console.log(response)
-    const { tokenId, accessToken, profileObj: { name, email } } = response
-    //post 요청 보내기
-    debugger
+    const {
+      tokenId,
+      accessToken,
+      profileObj: { name, email }
+    } = response
+
+    axios
+      .post(
+        'http://localhost:7260/auth/googleLogin',
+        {
+          tokenId,
+          accessToken,
+          name,
+          email
+        },
+        {
+          headers: {
+            Authorization: tokenId
+          }
+        }
+      )
+      .then(res => {
+        console.log(res)
+      })
+      .catch(err => console.log(err))
   }
 
   render() {
