@@ -1,4 +1,5 @@
 import React, { PureComponent } from 'react'
+import axios from 'axios'
 import logo from 'src/assets/logos/logo.png'
 import { GoogleLogin } from 'react-google-login'
 import classnames from 'classnames/bind'
@@ -8,9 +9,12 @@ const cx = classnames.bind(css)
 const moduleName = 'SignUp'
 
 class SignUp extends PureComponent {
-  
+
   responseGoogle = response => {
     console.log(response)
+    const { tokenId, accessToken, profileObj: { name, email } } = response
+    //post 요청 보내기
+    debugger
   }
 
   render() {
