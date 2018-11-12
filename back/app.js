@@ -3,6 +3,7 @@ const session = require("express-session")
 const MySQLStore = require("express-mysql-session")(session)
 const bodyparser = require("body-parser")
 const passport = require("passport")
+const cors = require("cors")
 const GoogleStrategy = require("passport-google-oauth2").Strategy
 const axios = require("axios")
 const mysql = require("mysql")
@@ -27,7 +28,7 @@ function isEmpty(obj) {
 
 conn.connect()
 const app = express()
-
+app.use(cors());
 app.use(express.static("public"))
 app.use(
   bodyparser.urlencoded({
@@ -50,6 +51,7 @@ app.use(
 )
 app.use(passport.initialize())
 app.use(passport.session())
+
 
 /////////////////////////////////////////////////////////////
 
@@ -95,6 +97,11 @@ app.get("/auth/logout", function (req, res) {
       })
     }
   })
+})
+
+app.post("/auth/googleLogin", (req, res) => {
+  console.log(req)
+  res.send('created')
 })
 
 app.get("/auth/login", function (req, res) {
