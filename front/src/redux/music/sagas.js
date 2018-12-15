@@ -103,12 +103,9 @@ export function* watchLoadSongDtailFlow() {
 
 export function* loadKeywordMusicFlow(action) {
   const { keyword } = action;
-  //console.log("keyword ", keyword) OK
   //FIXME : show issue #109 comment !!!!! 일시적 처리임.
   const getMusicInfo = state => state.music.musicInfo;
-  //console.log("getMusicInfo ", getMusicInfo)  OK
   const musicInfo = yield select(getMusicInfo);
-  //console.log("musicInfo ", musicInfo) OK
   yield put(loadKeywordMusicRequest());
   try {
     // 이 call 이 .... 내가 아는 call 이라면 apply로 처리해야 함.
